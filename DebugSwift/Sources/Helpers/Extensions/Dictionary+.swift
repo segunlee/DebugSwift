@@ -12,7 +12,12 @@ extension [String: Any] {
     func formattedString() -> String {
         var formattedString = ""
         for (key, value) in self {
-            formattedString += "\(key): \(value)\n"
+            var modifyValue = value
+            if let valueString = value as? String, let base64Data = Data.fromBase64(valueString) {
+                modifyValue = String(data: base64Data, encoding: .utf8) ?? value
+            }
+
+            formattedString += "\(key): \(modifyValue)\n"
         }
         return formattedString
     }
@@ -42,5 +47,19 @@ extension Dictionary {
             return nil
         }
         return jsonStr
+    }
+}
+
+extension Data {
+    static func fromBase64(_ encoded: String) -> Data? {
+        var encoded = encoded
+        let remainder = encoded.count % 4
+        if remainder > 0 {
+            encoded = encoded.padding(
+                toLength: encoded.count + 4 - remainder,
+                withPad: "=", startingAt: 0)
+        }
+
+        return Data(base64Encoded: encoded)
     }
 }
