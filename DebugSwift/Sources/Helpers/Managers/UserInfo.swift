@@ -18,6 +18,7 @@ enum UserInfo {
         [
             getAppVersionInfo(),
             getAppBuildInfo(),
+            getAppBuildDate(),
             getBundleName(),
             getBundleId(),
             getScreenResolution(),
@@ -49,6 +50,20 @@ enum UserInfo {
             title: "build-version".localized(),
             detail: "Build: \(build)"
         )
+    }
+    
+    static func getAppBuildDate() -> Info? {
+        if let infoPath = Bundle.main.path(forResource: "Info", ofType: "plist"), let infoAttr = try? FileManager.default.attributesOfItem(atPath: infoPath), let infoDate = infoAttr[.modificationDate] as? Date {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let date = dateFormatter.string(from: infoDate)
+            return Info(
+                title: "build-date".localized(),
+                detail: "\(date)"
+            )
+        }
+        return nil
     }
 
     static func getBundleName() -> Info? {

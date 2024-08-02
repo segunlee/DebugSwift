@@ -53,6 +53,7 @@
 
 "app-version" = "App Version:";
 "build-version" = "Build Version:";
+"build-date" = "Build Date:";
 "bundle-name" = "Bundle Name:";
 "bundle-id" = "Bundle ID:";
 "screen-resolution" = "Screen Resolution:";
