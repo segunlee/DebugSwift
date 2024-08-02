@@ -26,7 +26,7 @@ extension UITableViewCell {
         textLabel?.text = title
         textLabel?.textColor = Theme.shared.fontColor
         textLabel?.numberOfLines = 0
-        textLabel?.font = .systemFont(ofSize: 16 * scale)
+        textLabel?.font = .systemFont(ofSize: 12 * scale)
 
         // Set attributed text if subtitle is provided
         if let subtitle, !subtitle.isEmpty {

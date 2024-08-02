@@ -11,11 +11,11 @@ import UIKit
 extension UILabel {
     func setAttributedText(title: String, subtitle: String, scale: CGFloat) {
         let titleAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 16 * scale)
+            .font: UIFont.systemFont(ofSize: 12 * scale)
         ]
 
         let subtitleAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 12 * scale),
+            .font: UIFont.systemFont(ofSize: 10 * scale),
             .foregroundColor: UIColor.lightGray
         ]
 
